@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  String displayMessage = "Hello World !!!";
+  int clickCounter = 100000000;
+
+  void elevatedButtonClicked()
+  {
+    setState(() {
+      clickCounter++;
+      displayMessage = "You have clicked the button $clickCounter time(s).";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Trial Application 1 "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+              Text( displayMessage ),
+              ElevatedButton(onPressed: () => elevatedButtonClicked() ,child: Text( "Click this button" ),)
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
