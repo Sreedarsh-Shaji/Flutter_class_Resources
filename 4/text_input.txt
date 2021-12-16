@@ -1,0 +1,105 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+
+
+  void _textField1OnChange(String inputText)
+  {
+    setState(() {
+      userInput = "Typing >> $inputText";
+    });
+  }
+
+  void _textField1OnSubmit(String inputText)
+  {
+    setState(() {
+      userInput = "User Submitted : $inputText";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Trial Application 1 "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+
+            Text( userInput ),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: "Enter the user's name",
+                  hintText: "Please enter the user full name",
+                icon: Icon(Icons.people),
+              ),
+              autocorrect: true,
+              onChanged: _textField1OnChange,
+              onSubmitted: _textField1OnSubmit,
+            ),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: "User Number",
+                  hintText: "Please enter the user full name",
+                icon: Icon(Icons.phone),
+              ),
+              autocorrect: true,
+              onChanged: _textField1OnChange,
+              onSubmitted: _textField1OnSubmit,
+              keyboardType: TextInputType.phone,
+            ),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: "User Email",
+                  hintText: "Please enter the user email",
+                  icon: Icon(Icons.mail),
+              ),
+              autocorrect: true,
+              onChanged: _textField1OnChange,
+              onSubmitted: _textField1OnSubmit,
+              keyboardType: TextInputType.emailAddress,
+            ),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: "User Address",
+                  hintText: "Please enter the user Address"
+              ),
+              autocorrect: true,
+              onChanged: _textField1OnChange,
+              onSubmitted: _textField1OnSubmit,
+              keyboardType: TextInputType.multiline,
+            ),
+
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
