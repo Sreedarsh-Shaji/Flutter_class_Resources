@@ -1,0 +1,102 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+  bool _checkboxVal1 = false;
+  bool _checkboxVal2 = false;
+  bool _checkboxVal3 = false;
+
+  void _checkbox1Checked(bool? checked) => setState(() {
+    userInput = "Checkbox 1 value changed";
+    _checkboxVal1 = checked!;
+    print(_checkboxVal1);
+  } );
+
+  void _checkbox2Checked(bool? checked) => setState(() {
+    userInput = "Checkbox 2 value changed";
+    _checkboxVal2 = checked!;
+    print(_checkboxVal2);
+  } );
+
+
+  void _checkbox3Checked(bool? checked) => setState(() {
+    userInput = "Checkbox 3 value changed";
+    _checkboxVal3 = checked!;
+    print(_checkboxVal3);
+  } );
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Checkbox application "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+
+            Text( userInput ),
+
+            //Checkbox(value: _checkboxVal1, onChanged: _checkboxChecked),
+
+            CheckboxListTile(
+              value: _checkboxVal1,
+              onChanged: _checkbox1Checked,
+              title: Text("Accept condition"),
+            ),
+
+            CheckboxListTile(
+              value: _checkboxVal2,
+              onChanged: _checkbox2Checked,
+              title: Text("Accept condition 2"),
+              subtitle: Text("By accepting the condition , we hereby agree to... "),
+            ),
+
+
+            CheckboxListTile(
+              value: _checkboxVal3,
+              onChanged: _checkbox3Checked,
+              title: Text("Accept condition 3"),
+              subtitle: Text("By accepting the condition , we hereby agree to... "),
+              controlAffinity: ListTileControlAffinity.leading,
+            ),
+
+            CheckboxListTile(
+
+              value: _checkboxVal3,
+              onChanged: _checkbox3Checked,
+              title: Icon(Icons.archive),
+              subtitle: Text("By accepting the condition , we hereby agree to... "),
+              secondary: Icon(Icons.person),
+              controlAffinity: ListTileControlAffinity.leading,
+              activeColor: Colors.teal,
+            ),
+
+
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
