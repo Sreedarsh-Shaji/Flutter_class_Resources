@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+
+  double _sliderValue = 0.0;
+  void setValueAgainstSlider(double _slideVal){
+    setState(() {
+      int displayVal = (_sliderValue*1000).round();
+      userInput = "Slided to >> $displayVal" ;
+      _sliderValue = _slideVal;
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Checkbox application "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+
+            Text( userInput ),
+
+          Slider(
+              value: _sliderValue,
+              onChanged: setValueAgainstSlider,
+          )
+
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
