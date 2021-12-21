@@ -1,0 +1,58 @@
+
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+
+  void _setButtonClick()=>setState(() =>  userInput = "Search initiated" );
+  void _setButtonClick1()=>setState(() =>  userInput = "Mail notification detected" );
+  void _setButtonClick2()=>setState(() =>  userInput = "Call option selected" );
+
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Functional Appbar "),
+        backgroundColor: Colors.tealAccent,
+        actions: <Widget>[
+          IconButton(onPressed: _setButtonClick, icon: Icon(Icons.search)),
+          IconButton(onPressed: _setButtonClick1, icon: Icon(Icons.mail)),
+          IconButton(onPressed: _setButtonClick2, icon: Icon(Icons.phone)),
+        ],
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+
+            Text( userInput ,  style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.green),),
+
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
