@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+
+
+
+  String? _value1 = "a";
+
+  void _setValue1(String? num){
+
+    print(num);
+
+    setState(() {
+      userInput = "Selected $num";
+      _value1 = num!;
+    });
+
+  }
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Checkbox application "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+
+            Text( userInput ),
+            RadioListTile(value: 'a', groupValue: _value1, onChanged: _setValue1,
+              title: Text("This is the title"),
+              subtitle: Text("This is a subtitle"),),
+            RadioListTile(value: 'b', groupValue: _value1, onChanged: _setValue1),
+            RadioListTile(value: 'c', groupValue: _value1, onChanged: _setValue1),
+            RadioListTile(value: 'd', groupValue: _value1, onChanged: _setValue1),
+            RadioListTile(value: 'e', groupValue: _value1, onChanged: _setValue1),
+
+
+
+
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
