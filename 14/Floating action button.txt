@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+
+  void _floatingActionButtonClicked() => setState(() => userInput = " Floating Action button clicked " );
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Functional Appbar "),
+        backgroundColor: Colors.tealAccent,
+
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: _floatingActionButtonClicked,
+        backgroundColor: Colors.teal,
+        mini: false,
+        child: Icon(Icons.timer),
+      ),
+
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+            Text( userInput ,  style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.green),),
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
