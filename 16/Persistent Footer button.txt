@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+
+  void _footerButton1Clicked() => setState(() => userInput = " Footer button 1 clicked " );
+  void _footerButton2Clicked() => setState(() => userInput = " Footer button 2 clicked " );
+  void _footerButton3Clicked() => setState(() => userInput = " Footer button 3 clicked " );
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Functional Appbar "),
+        backgroundColor: Colors.tealAccent,
+
+      ),
+
+    drawer: Drawer(
+      child : Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          children: <Widget>[
+            Text("This is a sample text"),
+          ],
+        ),
+      )
+    ),
+
+      persistentFooterButtons: <Widget>[
+        IconButton(onPressed: _footerButton1Clicked, icon: Icon(Icons.person)),
+        IconButton(onPressed: _footerButton2Clicked, icon: Icon(Icons.phone)),
+        IconButton(onPressed: _footerButton3Clicked, icon: Icon(Icons.camera)),
+      ],
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+            Text( userInput ,  style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.green),),
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}

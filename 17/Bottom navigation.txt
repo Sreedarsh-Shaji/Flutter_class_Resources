@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+  int index = 0;
+
+
+  void _bottomNavButtonOnTap(int _changedIndex)
+  {
+    print("$_changedIndex");
+  setState(() {
+    index = _changedIndex;
+  });
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Functional Appbar "),
+        backgroundColor: Colors.tealAccent,
+
+      ),
+
+    drawer: Drawer(
+      child : Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          children: <Widget>[
+            Text("This is a sample text"),
+          ],
+        ),
+      )
+    ),
+
+
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home) , title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.settings) , title: Text("Settings")),
+          BottomNavigationBarItem(icon: Icon(Icons.message) , title: Text("Messages")),
+        ],
+
+        currentIndex: index,
+        onTap: _bottomNavButtonOnTap,
+
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+            Text( userInput ,  style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.green),),
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
