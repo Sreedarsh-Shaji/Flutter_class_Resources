@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+
+class FirstAppState extends State<FirstApp>{
+
+  String userInput = " [ Placeholder for user input ] ";
+  int index = 0;
+
+  void _showBottomNotification(int _changed)
+  {
+    index = _changed;
+    String selected = "";
+
+    switch(_changed){
+      case 0 : selected = "Home";
+      break;
+      case 1 : selected = "Settings";
+      break;
+      case 2 : selected = "Message";
+      break;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Selected $selected!'),
+        action: SnackBarAction(
+          label: 'Action',
+          onPressed: () {
+            // Code to execute.
+          },
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Functional Appbar "),
+        backgroundColor: Colors.tealAccent,
+
+      ),
+
+    drawer: Drawer(
+      child : Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          children: <Widget>[
+            Text("This is a sample text"),
+          ],
+        ),
+      )
+    ),
+
+
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home) , title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.settings) , title: Text("Settings")),
+          BottomNavigationBarItem(icon: Icon(Icons.message) , title: Text("Messages")),
+        ],
+
+        currentIndex: index,
+        onTap: _showBottomNotification,
+
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+            Text( userInput ,  style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.green),),
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
