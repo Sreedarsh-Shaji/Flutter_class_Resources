@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  @override
+  void initState()
+  {
+    print("This is created under the init state method!!!");
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Application name goes here "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+            Chip(
+                label: Text("This is a sample chip!!!"),
+                avatar: CircleAvatar(
+                  backgroundColor: Colors.green,
+                  child: Text("Edit"),
+                ),
+            )
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
