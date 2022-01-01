@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  String _displayMessage = "Hello World !!!";
+
+  void _iconButtonPressed() => setState(() {
+    String dateTime = DateTime.now().toString();
+    _displayMessage = "Button Pressed @ $dateTime";
+  });
+
+  @override
+  Widget build(BuildContext context)
+  {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Application name goes here "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+              Text( _displayMessage ),
+              IconButton(
+                icon: Icon(Icons.timer),
+                onPressed: _iconButtonPressed,
+                tooltip: 'Press this to show the performed time',
+              ),
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
