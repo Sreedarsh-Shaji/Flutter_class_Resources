@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  List<Widget> _lapCount = [];
+
+
+  @override
+  void initState()
+  {
+    for ( int i =0 ; i<5 ; i++ )
+      {
+
+        Key key = new Key("key$i");
+
+        Container c = Container(
+          key : key,
+          padding: new EdgeInsets.all(10.0),
+          child :  Chip(
+            label: Text("This is a sample chip!!!"),
+            onDeleted: () => _onDelete,
+            avatar: CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Text("$i"),
+            ),
+          )
+
+        );
+
+        _lapCount.add(c);
+
+      }
+  }
+
+  void _onDelete()
+  {
+    print("Deleted the chip");
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Application name goes here "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: _lapCount,
+        ),
+      ),
+
+    );
+
+  }
+
+}
