@@ -1,0 +1,114 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  List<Widget> _lapCount = [];
+  int i = 0;
+  final GlobalKey<ScaffoldState> _scaffoldstate = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState()
+  {
+    _lapCount.add(_createChip());
+  }
+
+  Widget _createChip()
+  {
+
+      Key key = new Key("key$i");
+      String timeStamp = DateTime.now().toString();
+
+      Container c = Container(
+          key : key,
+          padding: new EdgeInsets.all(10.0),
+          child :  Chip(
+            label: Text("Lap $i : $timeStamp"),
+            onDeleted: () => _onDelete(key),
+            avatar: CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Text("$i"),
+            ),
+          )
+
+      );
+
+      i++;
+
+      return c;
+
+  }
+
+  void _onDelete(Key key)
+  {
+    List<Widget> processingList = _lapCount;
+    // Step 1 : Traverse through the list and locate the element
+    
+    for( int i = 0 ; i < processingList.length ; i++ )
+      {
+        Widget temp = _lapCount.elementAt(i);
+        if( temp.key == key )
+          {
+            processingList.removeAt(i);
+          }
+      }
+
+    setState(() {
+      _lapCount = processingList;
+    });
+
+    const snackBar = SnackBar(
+      content: Text('Lap removed successfully!!!'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+  }
+
+  void _floatingButtonOnPressed()
+  {
+    const snackBar = SnackBar(
+      content: Text('Lap added successfully!!!'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    setState(() {
+      _lapCount.add(_createChip());
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Lap counter "),
+      ),
+
+      floatingActionButton: FloatingActionButton(onPressed: _floatingButtonOnPressed, child: Icon(Icons.timer),),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: _lapCount,
+        ),
+      ),
+
+    );
+
+  }
+
+}
