@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
+
+class FirstAppState extends State<FirstApp>{
+
+  WhyFarther _selection = WhyFarther.harder;
+  String _displayMessage = "";
+
+  @override
+  Widget build(BuildContext context)
+  {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Application name goes here "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child:
+        Column(
+          children: <Widget> [
+            Text( _displayMessage ),
+            PopupMenuButton<WhyFarther>(
+
+              child: Icon(Icons.input),
+
+              onSelected: (WhyFarther result) {
+                setState(() { _selection = result; });
+                _displayMessage = "Value Changed to $result";
+                },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.harder,
+                  child: Text('Working a lot harder'),
+                ),
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.smarter,
+                  child: Text('Being a lot smarter'),
+                ),
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.selfStarter,
+                  child: Text('Being a self-starter'),
+                ),
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.tradingCharter,
+                  child: Text('Placed in charge of trading charter'),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
