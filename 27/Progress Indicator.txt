@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp( home: FirstApp(), ));
+}
+
+class FirstApp extends StatefulWidget
+{
+
+  @override
+  FirstAppState createState() => FirstAppState();
+
+}
+
+class FirstAppState extends State<FirstApp>{
+
+  double _value = 0.0;
+  String displayMessage = "Slider App !!!";
+
+  void _sliderChanged( double sliderNowValue ) => setState(() {
+    _value = sliderNowValue;
+    int sliderValToDisplay = (_value*100).toInt();
+    displayMessage = "Slider value changed to $sliderValToDisplay";
+  });
+
+  @override
+  Widget build(BuildContext context)
+  {
+
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text(" Application name goes here "),
+      ),
+
+      body : Container(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget> [
+              Text( displayMessage ),
+              Slider(value: _value, onChanged: _sliderChanged),
+              LinearProgressIndicator(value: _value),
+              CircularProgressIndicator(value: _value),
+          ],
+        ),
+      ),
+
+    );
+
+  }
+
+}
